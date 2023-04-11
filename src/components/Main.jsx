@@ -29,7 +29,7 @@ export const Main = () => {
   }
 
   const removeTask = ( id ) => {
-    const resultTask = taskList.filter(task => task.id !== id)
+    const resultTask = taskList.filter(task => task.id !== id)  
     setTaskList(resultTask)
     localStorage.setItem('tasks', JSON.stringify([...resultTask]))
     return resultTask

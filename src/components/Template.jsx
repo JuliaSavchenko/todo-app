@@ -1,9 +1,5 @@
-
 import { DateSwitcher } from "./DateSwitcher"
 import { ToDoListItem } from "./ToDoListItem"
-
-
-
 
 export const Template = (props) => {
   const {listToDo, removeTask, editTask} = props
@@ -12,13 +8,7 @@ export const Template = (props) => {
        <DateSwitcher />
         <div>  
           {listToDo?.map(item => 
-          <ToDoListItem  key={item.id} listItem={{
-          title: "",
-          time: "",
-          id: `${Date.now()}`,
-          isComplited: false,
-          isEdited: false
-        }} removeTask={removeTask} editTask={editTask} listToDo={[]}/>)}
+          <ToDoListItem key={item.id} removeTask={() => removeTask(item.id)} editTask={editTask}/>)}
       </div>
     </div>
   )

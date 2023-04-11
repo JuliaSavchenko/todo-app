@@ -1,18 +1,16 @@
 {
-  "name": "js-react-test-task",
+  "name": "todo-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/node": "^18.15.11",
-    "@types/react": "^18.0.33",
-    "@types/react-dom": "^18.0.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "react-time-picker": "^6.0.3",
+    "tailwind": "^4.0.0",
     "typescript": "^5.0.3",
     "web-vitals": "^2.1.4",
     "yarn": "^1.22.19"

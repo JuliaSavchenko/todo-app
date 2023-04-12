@@ -8,11 +8,16 @@ export const Main = () => {
 
   const [taskList, setTaskList] = useState([])
   // const [toggleEdit, setToggleEdit] = useState(true)
+  const [taskCount, setTaskCout] = useState(0)
 
   useEffect (() => {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || []
     setTaskList(tasks)
   }, [])
+
+  useEffect(() => {
+    setTaskCout(Object.keys(taskList).length || 0)
+  }, [taskList])
 
   const addTask = () => {
     const newTaskItem= {  
@@ -35,20 +40,22 @@ export const Main = () => {
     return resultTask
   } 
 
-  const editTask = ( id, title ) => {
+  const editTask = ( id, value ) => {
     const editedTaskList = taskList.map(task => {
       if (task.id === id) {
-        setTaskList([...taskList, {...task, title: title}])
+        setTaskList([...taskList, {...task, title: value}])
+        task.isEdited = true
       }
       return task
     })
-
-    return editedTaskList
+    localStorage.setItem('task', JSON.stringify([...editedTaskList]))
+    return true 
   }
      
+  
   return (
     <div className="App-container">
-      <Header children={"Add New"} onClick={addTask} />
+      <Header buttonName={"Add New"} onClick={addTask} taskCount={taskCount}/>
       <Template listToDo = {taskList} removeTask={removeTask} editTask={editTask}/>
     </div>
   )

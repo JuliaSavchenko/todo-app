@@ -2,8 +2,6 @@
 import { Title } from './Title'
 import { Button } from './Button'
 
-
-
 export const Header = (props) => {
   const {buttonName, onClick, taskCount} = props
   return ( 

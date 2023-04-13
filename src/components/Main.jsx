@@ -20,12 +20,11 @@ export const Main = () => {
   }, [taskList])
 
   const addTask = () => {
-    const newTaskItem= {  
+    const newTaskItem = {  
       title: '',
       time: '',
       id: `${new Date().getTime()}`,
       isComplited: false,
-      isEdited: false
     } 
 
     setTaskList([...taskList, newTaskItem])
@@ -40,23 +39,29 @@ export const Main = () => {
     return resultTask
   } 
 
-  const editTask = ( id, value ) => {
+  const editTask = ( id, taskTitle) => {
+    console.log(id);
+    console.log(taskTitle); // тут вообще пустота
     const editedTaskList = taskList.map(task => {
-      if (task.id === id) {
-        setTaskList([...taskList, {...task, title: value}])
-        task.isEdited = true
+      if (task.id !== id) {
+        return task
+      } else {
+        const editedTask =  {...task, title: taskTitle}
+        return editedTask
       }
-      return task
     })
-    localStorage.setItem('task', JSON.stringify([...editedTaskList]))
-    return true 
+
+    console.log(editedTaskList)
+    setTaskList(editedTaskList)
+
+    localStorage.setItem('task', JSON.stringify(editedTaskList))
   }
      
   
   return (
     <div className="App-container">
       <Header buttonName={"Add New"} onClick={addTask} taskCount={taskCount}/>
-      <Template listToDo = {taskList} removeTask={removeTask} editTask={editTask}/>
+      <Template taskList = {taskList} removeTask={removeTask} editTask={editTask}/>
     </div>
   )
 }

@@ -11,9 +11,9 @@ export const Template = (props) => {
           {taskList?.map(task => 
             <ToDoListItem 
             key={task.id} 
-            title={task.title}
             removeTask={() => removeTask(task.id)} 
-            editTask={() => editTask(task.id, task.title)}/>)
+            editTask={editTask}
+            task={task}/>)
           }
       </div>
     </div>

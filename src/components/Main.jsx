@@ -54,7 +54,7 @@ export const Main = () => {
     console.log(editedTaskList)
     setTaskList(editedTaskList)
 
-    localStorage.setItem('task', JSON.stringify(editedTaskList))
+    localStorage.setItem('tasks', JSON.stringify(editedTaskList))
   }
      
   

@@ -1,11 +1,15 @@
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export const ToDoListItem = (props) => {
-  const { editTask, removeTask} = props
+  const { editTask, removeTask, task} = props
   const [isDone, setIsDone]  = useState(false)
   const [value, setValue] = useState('')
   const [timeValue, setTime] = useState('10:00')
+
+  // useEffect(() => {
+  //   setValue(task.title)
+  // }, [value])
 
   const onHandleClick = (e) => {
     const isDoneState = e.target.value
@@ -16,7 +20,7 @@ export const ToDoListItem = (props) => {
   const onhandleKeyDown = (e) => {
     if (e.key === "Enter") {
       console.log(value)
-      editTask(value)
+      editTask(task.id, value)
     }
   }
  

@@ -9,7 +9,8 @@ export const Main = () => {
   const [taskList, setTaskList] = useState([])
   // const [toggleEdit, setToggleEdit] = useState(true)
   const [taskCount, setTaskCout] = useState(0)
-
+  console.log(taskList);
+  console.log(taskCount);
   useEffect (() => {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || []
     setTaskList(tasks)
@@ -39,9 +40,9 @@ export const Main = () => {
     return resultTask
   } 
 
-  const editTask = ( id, taskTitle) => {
+  const editTask = ( id, taskTitle ) => {
     console.log(id);
-    console.log(taskTitle); // тут вообще пустота
+    console.log(taskTitle);
     const editedTaskList = taskList.map(task => {
       if (task.id !== id) {
         return task
@@ -51,17 +52,35 @@ export const Main = () => {
       }
     })
 
-    console.log(editedTaskList)
     setTaskList(editedTaskList)
 
     localStorage.setItem('tasks', JSON.stringify(editedTaskList))
   }
-     
+
+  // const completeTask = (id, isDone) => {
+  //   console.log(id);
+  //   console.log(isDone);
+  //   const isDoneArr = taskList.map(task => {
+  //     if (task.id !== id) {
+  //       return task
+  //     } else {
+  //       const editTask = {...task, isComplited: !isDone}
+  //       console.log(editTask);
+  //       return editTask
+  //     }
+      
+  //   })
+
+  //   console.log(isDoneArr);
+  //   setTaskList(isDoneArr)
+
+  //   localStorage.setItem('tasks', JSON.stringify(isDoneArr))
+  // }
   
   return (
     <div className="App-container">
       <Header buttonName={"Add New"} onClick={addTask} taskCount={taskCount}/>
-      <Template taskList = {taskList} removeTask={removeTask} editTask={editTask}/>
+      <Template taskList = {taskList} removeTask={removeTask} editTask={editTask} />
     </div>
   )
 }

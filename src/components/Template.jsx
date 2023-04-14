@@ -2,8 +2,8 @@
 import { ToDoListItem } from "./ToDoListItem"
 
 export const Template = (props) => {
+  const {taskList, removeTask, editTask, toggleComplete} = props
 
-  const {taskList, removeTask, editTask, completeTask} = props
   return (
     <div className="bg-white w-96 m-auto rounded-tl-lg h-[32rem] overflow-scroll">
        {/* <DateSwitcher /> */}
@@ -13,11 +13,11 @@ export const Template = (props) => {
             key={ task.id } 
             removeTask={() => removeTask(task.id)} 
             editTask={ editTask } 
-            completeTask={ completeTask }
+            toggleComplete= { toggleComplete }
             task={ task }
             />)
           }
       </div>
     </div>
   )
-} 
+}

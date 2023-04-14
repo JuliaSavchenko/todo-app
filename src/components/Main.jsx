@@ -7,10 +7,8 @@ import { useState, useEffect } from "react"
 export const Main = () => {
 
   const [taskList, setTaskList] = useState([])
-  // const [toggleEdit, setToggleEdit] = useState(true)
   const [taskCount, setTaskCout] = useState(0)
-  console.log(taskList);
-  console.log(taskCount);
+
   useEffect (() => {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || []
     setTaskList(tasks)
@@ -21,7 +19,7 @@ export const Main = () => {
   }, [taskList])
 
   const addTask = () => {
-    const newTaskItem = {  
+    const newTaskItem= {  
       title: '',
       time: '',
       id: `${new Date().getTime()}`,
@@ -40,15 +38,14 @@ export const Main = () => {
     return resultTask
   } 
 
-  const editTask = ( id, taskTitle ) => {
-    console.log(id);
-    console.log(taskTitle);
+
+  const editTask = ( id, value ) => {
+
     const editedTaskList = taskList.map(task => {
       if (task.id !== id) {
         return task
       } else {
-        const editedTask =  {...task, title: taskTitle}
-        return editedTask
+        return {...task, title: value}
       }
     })
 
@@ -57,30 +54,25 @@ export const Main = () => {
     localStorage.setItem('tasks', JSON.stringify(editedTaskList))
   }
 
-  // const completeTask = (id, isDone) => {
-  //   console.log(id);
-  //   console.log(isDone);
-  //   const isDoneArr = taskList.map(task => {
-  //     if (task.id !== id) {
-  //       return task
-  //     } else {
-  //       const editTask = {...task, isComplited: !isDone}
-  //       console.log(editTask);
-  //       return editTask
-  //     }
-      
-  //   })
+  const toggleComplete = (id) => {
 
-  //   console.log(isDoneArr);
-  //   setTaskList(isDoneArr)
+    const isDoneArr = taskList.map(task => {
+      if (task.id === id) {
+          return {...task, isComplited: !task.isComplited}
+      }
+      return task
+    })
 
-  //   localStorage.setItem('tasks', JSON.stringify(isDoneArr))
-  // }
+    console.log(isDoneArr);
+    setTaskList(isDoneArr)
+
+    localStorage.setItem('tasks', JSON.stringify(isDoneArr))
+  }
   
   return (
     <div className="App-container">
       <Header buttonName={"Add New"} onClick={addTask} taskCount={taskCount}/>
-      <Template taskList = {taskList} removeTask={removeTask} editTask={editTask} />
+      <Template taskList={taskList} removeTask={removeTask} editTask={editTask} toggleComplete={toggleComplete}/>
     </div>
   )
 }

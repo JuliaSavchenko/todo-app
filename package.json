@@ -12,7 +12,6 @@
     "react-scripts": "5.0.1",
     "react-time-picker": "^6.0.3",
     "tailwind": "^4.0.0",
-    "typescript": "^5.0.3",
     "web-vitals": "^2.1.4",
     "yarn": "^1.22.19"
   },
@@ -41,6 +40,7 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "tailwindcss": "^3.3.1"
   }
 }

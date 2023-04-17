@@ -1,51 +1,73 @@
-
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 
 export const ToDoListItem = (props) => {
-
-  const { editTask, removeTask, toggleComplete, task} = props
+  const { editTask, removeTask, toggleComplete, changeTime, task } = props
   const [value, setValue] = useState('')
-  const [timeValue, setTime] = useState('10:00')
+  const [timeValue, setTimeValue] = useState('10:00')
 
-  useEffect(() => { 
-     setValue(task.title)
-  },[task.title])
+  useEffect(() => {
+    setValue(task.title)
+    setTimeValue(task.timeValue)
+  }, [task.title, task.timeValue])  
 
   const onHandleClick = () => {
     toggleComplete(task.id)
   }
 
-  const onhandleKeyDown = (e) => {
-    if (e.key === "Enter") {
+  const onHandleKeyDown = (e) => {
+    if (e.key === 'Enter') {
       editTask(task.id, value)
     }
   }
- 
-  const onHandleChange = (e) => {
+
+  const onHandleChangeInput = (e) => {
     setValue(e.target.value)
   }
 
-  const handleChangeTime = (e) => {
- 
+  const onHandleChangeTime = (e) => {
+    setTimeValue(e.target.value)
   }
 
-  const handleSetTime = () => {
-    setTime(timeValue)
+  const onHandleSetTime = (e) => {
+    if (e.key === 'Enter') {
+      console.log(e.target.value)
+      changeTime(task.id, timeValue)
+    }
   }
 
-  return (  
-    <div className="flex flex-row justify-around items-center">
-      <div className="flex flex-row m-10">
-        <input type="checkbox" className="h-6 w-6 text-pink-500 border-gray-300 border-white-300" checked={task.isComplited} onChange={ onHandleClick } />
-        <div className="flex flex-col">
-          <input type="text" className="block min-h-[auto] ml-4 w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-           value={ value } onChange={ onHandleChange } onKeyDown={ onhandleKeyDown } placeholder="...type any here"/>
-          <input type="time" className="block min-h-[auto] ml-4 w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-           value={ timeValue } onChange={ handleChangeTime } onKeyDown={ () => handleSetTime(value) }/>  
+  return (
+    <div className="flex flex-row justify-evenly items-center">
+      <div className="flex flex-row m-10 items-center">
+        <input
+          type="checkbox"
+          className="h-6 w-6 rounded-dm text-[#FF6DAB] border-gray-300 outline-transparent"
+          checked={task.isComplited}
+          onChange={onHandleClick}
+        />
+        <div className="flex flex-col content-end">
+          <input
+            type="text"
+            className="text-[#FF6DAB] ml-4 p-0 w-30 border-transparent bg-transparent outline-none ring-white outline-transparent"
+            value={value}
+            onChange={onHandleChangeInput}
+            onKeyDown={onHandleKeyDown}
+            placeholder="...type any here"
+          />
+          <input
+            type="time"
+            className="text-[#FF6DAB] ml-4 p-0 w-30 bg-withe border-transparent ring-white outline-transparent caret-transparent appearance-none"
+            value={timeValue}
+            onChange={onHandleChangeTime}
+            onKeyDown={onHandleSetTime}
+          />
         </div>
       </div>
-      <div className="">
-        <button className="" onClick={ removeTask }>x</button>
+      <div>
+        <button
+          className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+          onClick={removeTask}>
+          <div className="h-6 w-6">X</div>
+        </button>
       </div>
     </div>
   )

@@ -12,12 +12,8 @@ export const Main = () => {
   }, [])
 
   useEffect(() => {
-    setTaskCout(Object.keys(taskList).length || 0)
+    setTaskCout(Object.keys(taskList).length)
   }, [taskList])
-
-  useEffect(() => {
-    
-  })
 
   const addTask = () => {
     const newTaskItem = {
@@ -33,6 +29,7 @@ export const Main = () => {
   }
 
   const removeTask = (id) => {
+
     const resultTask = taskList.filter((task) => task.id !== id)
     setTaskList(resultTask)
     localStorage.setItem('tasks', JSON.stringify([...resultTask]))
@@ -40,6 +37,7 @@ export const Main = () => {
   }
 
   const editTask = (id, value) => {
+
     const editedTaskList = taskList.map((task) => {
       if (task.id !== id) {
         return task
@@ -62,7 +60,6 @@ export const Main = () => {
       return task
     })
 
-    // console.log(isDoneArr)
     setTaskList(isDoneArr)
 
     localStorage.setItem('tasks', JSON.stringify(isDoneArr))

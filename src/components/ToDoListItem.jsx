@@ -7,8 +7,13 @@ export const ToDoListItem = (props) => {
 
   useEffect(() => {
     setValue(task.title)
-    setTimeValue(task.timeValue)
-  }, [task.title, task.timeValue])  
+  }, [task.title])  
+
+  useEffect(() => {
+    if (task.time) {
+      setTimeValue(task.time)
+    }
+  }, [task.time])
 
   const onHandleClick = () => {
     toggleComplete(task.id)
@@ -25,6 +30,7 @@ export const ToDoListItem = (props) => {
   }
 
   const onHandleChangeTime = (e) => {
+    console.log(e.target.value)
     setTimeValue(e.target.value)
   }
 
@@ -56,7 +62,7 @@ export const ToDoListItem = (props) => {
           <input
             type="time"
             className="text-[#FF6DAB] ml-4 p-0 w-30 bg-withe border-transparent ring-white outline-transparent caret-transparent appearance-none"
-            value={timeValue}
+            value={timeValue || '10:00'}
             onChange={onHandleChangeTime}
             onKeyDown={onHandleSetTime}
           />

@@ -1,0 +1,1 @@
+Добавить `.gitignore` файл, заигнорить node_modules

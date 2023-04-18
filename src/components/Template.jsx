@@ -8,7 +8,9 @@ export const Template = (props) => {
     <div className="bg-white w-96 m-auto rounded-tl-lg h-[32rem] overflow-scroll">
       {/* <DateSwitcher /> */}
       <div>
-        {taskList?.map((task) => (
+        {taskList
+        ?.sort((a, b) => a.time > b.time ? 1 : -1)
+        .map((task) => (
           <ToDoListItem
             key={task.id}
             editTask={editTask}
@@ -17,7 +19,7 @@ export const Template = (props) => {
             changeTime={changeTime}
             task={task}
           />
-        ))}
+        ))} 
       </div>
     </div>
   )

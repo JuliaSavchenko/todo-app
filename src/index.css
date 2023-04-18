@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+input[type="time"]::-webkit-calendar-picker-indicator {
+  background: none;
+}
+      
+input:focus {
+  -webkit-appearance: none
+}

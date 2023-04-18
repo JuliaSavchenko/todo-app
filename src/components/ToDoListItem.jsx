@@ -7,7 +7,7 @@ export const ToDoListItem = (props) => {
 
   useEffect(() => {
     setValue(task.title)
-  }, [task.title])  
+  }, [task.title])
 
   useEffect(() => {
     if (task.time) {
@@ -20,9 +20,7 @@ export const ToDoListItem = (props) => {
   }
 
   const onHandleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      editTask(task.id, value)
-    }
+    editTask(task.id, value)
   }
 
   const onHandleChangeInput = (e) => {
@@ -30,15 +28,11 @@ export const ToDoListItem = (props) => {
   }
 
   const onHandleChangeTime = (e) => {
-    console.log(e.target.value)
     setTimeValue(e.target.value)
   }
 
   const onHandleSetTime = (e) => {
-    if (e.key === 'Enter') {
-      console.log(e.target.value)
-      changeTime(task.id, timeValue)
-    }
+    changeTime(task.id, timeValue)
   }
 
   return (
@@ -53,10 +47,10 @@ export const ToDoListItem = (props) => {
         <div className="flex flex-col content-end">
           <input
             type="text"
-            className="text-[#FF6DAB] ml-4 p-0 w-30 border-transparent bg-transparent outline-none ring-white outline-transparent"
+            className="text-[#FF6DAB] ml-4 p-0 w-30 border-transparent bg-transparent outline-none ring-white outline-transparent focus:border-none"
             value={value}
             onChange={onHandleChangeInput}
-            onKeyDown={onHandleKeyDown}
+            onBlur={onHandleKeyDown}
             placeholder="...type any here"
           />
           <input
@@ -64,14 +58,16 @@ export const ToDoListItem = (props) => {
             className="text-[#FF6DAB] ml-4 p-0 w-30 bg-withe border-transparent ring-white outline-transparent caret-transparent appearance-none"
             value={timeValue || '10:00'}
             onChange={onHandleChangeTime}
-            onKeyDown={onHandleSetTime}
+            onBlur={onHandleSetTime}
+            style={{ background: 'none' }}
           />
         </div>
       </div>
       <div>
         <button
           className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-          onClick={removeTask}>
+          onClick={removeTask}
+        >
           <div className="h-6 w-6">X</div>
         </button>
       </div>

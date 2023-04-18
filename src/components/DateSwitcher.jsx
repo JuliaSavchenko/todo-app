@@ -1,3 +1,5 @@
+// Убрать неиспользуемый код
+
 // // import { useState } from "react"
 
 // export const DateSwitcher = () => {
@@ -9,6 +11,6 @@
 //       <div className="date current">Mon, Aug</div>
 //       <button className="date next">Tue, Aug</button>
 //     </div>
-    
+
 //   )
 // }

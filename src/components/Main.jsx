@@ -29,15 +29,14 @@ export const Main = () => {
   }
 
   const removeTask = (id) => {
-
     const resultTask = taskList.filter((task) => task.id !== id)
     setTaskList(resultTask)
+    // просто resultTask
     localStorage.setItem('tasks', JSON.stringify([...resultTask]))
     return resultTask
   }
 
   const editTask = (id, value) => {
-
     const editedTaskList = taskList.map((task) => {
       if (task.id !== id) {
         return task
@@ -46,7 +45,7 @@ export const Main = () => {
       }
     })
 
-    console.log(editedTaskList);
+    console.log(editedTaskList) // убрать console.log'и
     setTaskList(editedTaskList)
 
     localStorage.setItem('tasks', JSON.stringify(editedTaskList))
@@ -66,16 +65,16 @@ export const Main = () => {
   }
 
   const changeTime = (id, timeValue) => {
-      console.log(id)
-      console.log(timeValue)
-    const changedTimeList = taskList.map(task => {
+    console.log(id)
+    console.log(timeValue)
+    const changedTimeList = taskList.map((task) => {
       if (task.id !== id) {
         return task
       } else {
         return { ...task, time: timeValue }
       }
     })
-    console.log(changedTimeList);
+    console.log(changedTimeList)
     setTaskList(changedTimeList)
 
     localStorage.setItem('tasks', JSON.stringify(changedTimeList))

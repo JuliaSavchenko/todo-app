@@ -70,7 +70,7 @@ export const Main = () => {
         return { ...task, time: timeValue }
       }
     })
-    // console.log(changedTimeList);
+
     setTaskList(changedTimeList)
 
     localStorage.setItem('tasks', JSON.stringify(changedTimeList))

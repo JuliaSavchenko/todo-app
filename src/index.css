@@ -2,10 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-input[type="time"]::-webkit-calendar-picker-indicator {
+input:focus {
+  border: none !important; 
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+::-webkit-calendar-picker-indicator {
   background: none;
 }
-      
-input:focus {
-  -webkit-appearance: none
+
+input[type="time"] {
+  color: #C9C9C9;
 }
+
+input::placeholder { 
+  opacity: 1; 
+  color: #C9C9C9;
+}
+      

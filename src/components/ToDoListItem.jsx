@@ -7,13 +7,8 @@ export const ToDoListItem = (props) => {
 
   useEffect(() => {
     setValue(task.title)
-  }, [task.title])
-
-  useEffect(() => {
-    if (task.time) {
-      setTimeValue(task.time)
-    }
-  }, [task.time])
+    setTimeValue(task.time)
+  }, [task.time, task.title])
 
   const onHandleClick = () => {
     toggleComplete(task.id)
@@ -44,10 +39,10 @@ export const ToDoListItem = (props) => {
           checked={task.isComplited}
           onChange={onHandleClick}
         />
-        <div className="flex flex-col content-end">
+        <div className="flex flex-col content-end mt-3">
           <input
             type="text"
-            className="text-[#FF6DAB] ml-4 p-0 w-30 border-transparent bg-transparent outline-none ring-white outline-transparent focus:border-none"
+            className="text-[#FF6DAB] ml-4 p-0 w-30 border-transparent bg-transparent focus:outline-none focus:border-none"
             value={value}
             onChange={onHandleChangeInput}
             onBlur={onHandleKeyDown}
@@ -55,20 +50,19 @@ export const ToDoListItem = (props) => {
           />
           <input
             type="time"
-            className="text-[#FF6DAB] ml-4 p-0 w-30 bg-withe border-transparent ring-white outline-transparent caret-transparent appearance-none"
+            className="enabled:text-[#FF6DAB] font-normal text-xs ml-3.5 p-0 w-30 bg-withe border-transparent ring-white outline-transparent caret-transparent appearance-none"
             value={timeValue || '10:00'}
             onChange={onHandleChangeTime}
             onBlur={onHandleSetTime}
-            style={{ background: 'none' }}
           />
         </div>
       </div>
       <div>
         <button
-          className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+          className="bg-white rounded-md p-2 inline-flex items-center justify-center text-[#C9C9C9] hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
           onClick={removeTask}
         >
-          <div className="h-6 w-6">X</div>
+          <div className="h-6 w-6 pr-12">X</div>
         </button>
       </div>
     </div>

@@ -23,6 +23,7 @@ export const ToDoListItem = (props) => {
   }
 
   const onHandleChangeTime = (e) => {
+
     setTimeValue(e.target.value)
   }
 
@@ -50,7 +51,7 @@ export const ToDoListItem = (props) => {
           />
           <input
             type="time"
-            className="enabled:text-[#FF6DAB] font-normal text-xs ml-3.5 p-0 w-30 bg-withe border-transparent ring-white outline-transparent caret-transparent appearance-none"
+            className="visited:text-[#FF6DAB] font-normal text-xs ml-3.5 p-0 w-30 bg-withe border-transparent ring-white outline-transparent caret-transparent appearance-none"
             value={timeValue || '10:00'}
             onChange={onHandleChangeTime}
             onBlur={onHandleSetTime}

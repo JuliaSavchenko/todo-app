@@ -4,7 +4,7 @@ export const Template = (props) => {
   const { taskList, editTask, removeTask, toggleComplete, changeTime } = props
 
   return (
-    <div className="bg-white w-96 m-auto rounded-tl-lg h-[32rem] overflow-scroll">
+    <div className="bg-white w-96 m-auto rounded-tl-3xl h-[32rem] overflow-scroll -translate-y-10">
       <div>
         {taskList
           ?.sort((a, b) => (a.time > b.time ? 1 : -1))

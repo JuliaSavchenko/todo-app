@@ -3,18 +3,15 @@ import { useEffect, useState } from 'react'
 export const ToDoListItem = (props) => {
   const { editTask, removeTask, toggleComplete, changeTime, task } = props
   const [value, setValue] = useState('')
-  const [timeValue, setTimeValue] = useState('10:00')
+  const [timeValue, setTimeValue] = useState('00:00')
 
   useEffect(() => {
     setValue(task.title)
     setTimeValue(task.time)
   }, [task.time, task.title])
 
-  const onHandleClick = () => {
-    toggleComplete(task.id)
-  }
-
-  const onHandleKeyDown = (e) => {
+  const handleBlur = (e) => {
+    e.preventDefault()
     editTask(task.id, value)
   }
 
@@ -23,7 +20,6 @@ export const ToDoListItem = (props) => {
   }
 
   const onHandleChangeTime = (e) => {
-
     setTimeValue(e.target.value)
   }
 
@@ -38,7 +34,7 @@ export const ToDoListItem = (props) => {
           type="checkbox"
           className="h-6 w-6 rounded-dm text-[#FF6DAB] border-gray-300 outline-transparent"
           checked={task.isComplited}
-          onChange={onHandleClick}
+          onChange={() => toggleComplete(task.id)}
         />
         <div className="flex flex-col content-end mt-3">
           <input
@@ -46,7 +42,7 @@ export const ToDoListItem = (props) => {
             className="text-[#FF6DAB] ml-4 p-0 w-30 border-transparent bg-transparent focus:outline-none focus:border-none"
             value={value}
             onChange={onHandleChangeInput}
-            onBlur={onHandleKeyDown}
+            onBlur={handleBlur}
             placeholder="...type any here"
           />
           <input

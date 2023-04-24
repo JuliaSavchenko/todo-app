@@ -18,7 +18,7 @@ export const Main = () => {
   const addTask = () => {
     const newTaskItem = {
       title: '',
-      time: '10:00',
+      time: '00:00',
       id: `${new Date().getTime()}`,
       isComplited: false,
     }
